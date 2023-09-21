@@ -1,14 +1,23 @@
 async function getPokemon() {
- const randomNum = Math.floor((Math.random())*1293) // quantity of pokemons
+ const randomNum = function() {return Math.floor((Math.random())*1293)}// quantity of pokemons
+  const randomPokemonNum = randomNum();
 
-  const pokemonRandomUrl = `https://pokeapi.co/api/v2/pokemon/${randomNum}` 
+  const pokemonRandomUrl = `https://pokeapi.co/api/v2/pokemon/${randomPokemonNum}` 
   console.log(pokemonRandomUrl);
   const getPokemonResponse = await fetch(pokemonRandomUrl);
 
   const pokemonJson = await getPokemonResponse.json();
 
-  await (document.getElementById('pokeImg').src=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomNum}.png`);
+  function displayPokemon() {
+    return document.getElementById('pokeImg').src=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokemonNum}.png`
+  }
+  displayPokemon()
   console.log(pokemonJson);
+
+                                         const catchBtn = document.querySelector(".main__btn")
+  catchBtn.addEventListener("click", ()=> {
+    
+  })
   // let pokemonBaseUrl="https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
 // let response = await fetch(pokemonBaseUrl);
 
