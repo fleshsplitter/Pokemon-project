@@ -1,6 +1,6 @@
 async function getPokemon() {
  const randomNum = function() {return Math.floor((Math.random())*1293)}// quantity of pokemons
-  const randomPokemonNum = randomNum();
+  let randomPokemonNum = randomNum();
 
   const pokemonRandomUrl = `https://pokeapi.co/api/v2/pokemon/${randomPokemonNum}` 
   console.log(pokemonRandomUrl);
@@ -16,7 +16,9 @@ async function getPokemon() {
 
                                          const catchBtn = document.querySelector(".main__btn")
   catchBtn.addEventListener("click", ()=> {
-    
+    randomPokemonNum = randomNum();
+    displayPokemon();
+    console.log(randomPokemonNum);
   })
   // let pokemonBaseUrl="https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
 // let response = await fetch(pokemonBaseUrl);
