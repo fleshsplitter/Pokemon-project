@@ -18,7 +18,18 @@ async function getPokemon() {
   console.log(pokemonJson);
 
   const pokemonName = document.querySelector('.pokemon__name');
+  const pokemonAbilitiesList = document.querySelector(".pokemon-properties")
+  pokemonAbilitiesList.innerHTML=""
+  const pokemonAbility = document.querySelector(".ability")
+  
   pokemonName.textContent = pokemonJson.name;
+  
+pokemonJson.abilities.forEach((el) => {
+  let li = document.createElement("li");
+  li.classList.add(".ability");  
+  li.textContent=el.ability.name;
+  pokemonAbilitiesList.appendChild(li);
+  });
 }
 
 function catchPokemon() {
