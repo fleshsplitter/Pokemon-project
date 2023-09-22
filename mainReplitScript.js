@@ -19,17 +19,29 @@ async function getPokemon() {
 
   const pokemonName = document.querySelector('.pokemon__name');
   const pokemonAbilitiesList = document.querySelector(".pokemon-properties")
-  pokemonAbilitiesList.innerHTML=""
-  const pokemonAbility = document.querySelector(".ability")
-  
+  pokemonAbilitiesList.innerHTML = ""
+  pokemonAbilitiesList.textContent = "Способности:"
   pokemonName.textContent = pokemonJson.name;
-  
-pokemonJson.abilities.forEach((el) => {
-  let li = document.createElement("li");
-  li.classList.add(".ability");  
-  li.textContent=el.ability.name;
-  pokemonAbilitiesList.appendChild(li);
-  });
+
+  // pokemonJson.abilities.forEach((el) => 
+  for (const el of pokemonJson.abilities)
+    {
+    let abilityGroup = document.createElement("li");   abilityGroup.classList.add("ability__group");
+    
+    let abilityName = document.createElement("div");  abilityName.classList.add("ability__name")
+    abilityName.textContent = el.ability.name; 
+    abilityGroup.appendChild(abilityName)
+
+    let abilityDesc = document.createElement("div")
+abilityDesc.classList.add("ability__desc")
+    let abilityDescUrl = el.ability.url
+    let abilityDescResponse = await fetch(`${abilityDescUrl}`)
+      let abilityDescJson = await abilityDescResponse.json()
+    abilityDesc.textContent = abilityDescJson.flavor_text_entries[0].flavor_text;
+    
+    abilityGroup.appendChild(abilityDesc)
+    pokemonAbilitiesList.appendChild(abilityGroup);
+  };
 }
 
 function catchPokemon() {
@@ -41,3 +53,4 @@ function catchPokemon() {
 
 getPokemon();
 catchPokemon();
+

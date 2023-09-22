@@ -56,3 +56,10 @@ ul>li {
   justify-content: center;
   align-items: center;
 }
+
+.ability__name {
+  font-weight: bold;
+  text-align: center;
+  
+  
+}
