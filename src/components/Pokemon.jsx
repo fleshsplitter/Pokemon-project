@@ -1,19 +1,26 @@
 import React from 'react';
+import styles from "./Pokemon.module.scss"
 
-const Pokemon = () => {
+
+
+
+const Pokemon = (props) => {
+
+
+
+
   return (
-    <section className="main">
-      <h1 className="main__header">Hello pokemon world!</h1>
+    <section className={styles.main}>
       <div className="pokemon">
-        <img id="pokeImg" src="" className="pokemon__img" alt="pokemon" />
+        <img className="pokemon__img" alt="pokemon" src={props.pokemon.sprites?.front_default} />
         <div className="pokemon__desc">
-          <h2 className="pokemon__name"></h2>
+          <h2 className="pokemon__name">{props.pokemon.name}</h2>
           <ul className="pokemon-properties">
             <ul className="pokemon-properties__list abilities">Способности:</ul>
           </ul>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
